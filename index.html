@@ -1,0 +1,83 @@
+<!DOCTYPE_html>
+<html>
+	<head>
+		<link rel="stylesheet" href="index.css"/>
+	</head>
+	<body>
+		<div class="jumbotron text-centered" style="padding-left:35px; padding-right:35px;">
+		  <h1>I Made A Javascript Clock</h1>
+		  <p>Just in case you need the time.</p>
+		  <div class ="row">
+			  <div class="well well-lg col-md-4">
+			  	<h1 id="hour" class="col-md-4"></h1>
+			  </div>
+			    <div class="well well-lg col-md-4">
+			  	<h1 id="min" class="col-md-4"></h1>
+			  </div>
+			    <div class="well well-lg col-md-4">
+			  	<h1 id="sec" class="col-md-4"></h1>
+			  </div>
+			</div>
+		</div>
+		<div class="row" style="padding-left:25px; padding-right:25px;">
+			<div class="list-group col-md-4">
+			  <a href="http://www.tommportfolio.com" class="list-group-item active">
+			    My Portfolio Site
+			  </a>
+			  <a href="https://warm-shore-22973.herokuapp.com/users/sign_in" class="list-group-item">Lesson's App
+			  </a>
+			  <a href="https://guarded-beyond-92620.herokuapp.com/" class="list-group-item">Photo Sharing App
+			  </a>
+			</div>
+			<blockquote class="blockquote-reverse">
+			  <p>Maybe we should all take a little time, and check out Tom's portfolio</p>
+			  <small>Tom in <cite title="Source Title">Tom's Clock</cite></small>
+			</blockquote>
+		</div>
+		<script>
+			function times() {
+				var date = new Date();
+				var hour = date.getHours();
+				var min = date.getMinutes();
+				var sec = date.getSeconds();
+				var ampm = ""
+				ampm = morningNight(ampm)
+				hour = checkHour(hour);
+				min = checkMin(min);
+				sec = checkMin(sec);
+				
+				function morningNight(i){
+					if (hour > 12){
+						i = "pm"
+					}
+					else {
+						i = "am"
+					}
+					return i
+				};
+
+				function checkHour(i){
+					if (i > 12) {i = i - 12}
+						return i.toString()
+				};
+
+				function checkMin(i){
+					if (i < 10) {
+						i = "0" + i.toString()
+					}
+					else {
+						i.toString()
+					}
+					return i 
+				};
+
+				document.getElementById("hour").innerHTML = hour;
+				document.getElementById("min").innerHTML = min;
+				document.getElementById("sec").innerHTML = [sec, ampm].join('');
+			};
+			
+			times();
+			setInterval(times,1000);
+		</script>
+	</body>
+</html>
